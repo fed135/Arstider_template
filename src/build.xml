@@ -1,0 +1,39 @@
+<project name="Arstider Template" basedir=".">
+	
+	<property name="game" value="ArstiderTemplate"/>
+	
+	<property name="tools" location="tools"/>
+	<property name="dest" location="/var/www/${game}"/>
+	
+	<target name="clean">
+		<echo> - preparing</echo>
+		<delete dir="${dest}" includeemptydirs="true" failonerror="false" />
+		<mkdir dir="${dest}"/>
+	</target>
+
+	<target name="build.dev" depends="clean" description="Dev build">
+		<echo>### Building Dev...</echo>
+		<echo>###############################################</echo>
+		<filter token="app.debug" value="true"/>
+		
+		<echo> - copying js files</echo>
+		<copy todir="${dest}/js" filtering="true">
+			<fileset dir="js"></fileset>
+		</copy>
+		
+		<echo> - copying pages</echo>
+		<copy tofile="${dest}/index.html" file="index.html" filtering="true" />
+		
+		<echo> - copying media</echo>
+		<copy todir="${dest}/media" filtering="false">
+			<fileset dir="media"></fileset>
+		</copy>
+		
+		<echo> - copying styles</echo>
+		<copy todir="${dest}/css" filtering="true">
+			<fileset dir="css" />
+		</copy>
+		
+		<echo>### Build Complete!</echo>
+	</target>	
+</project>
