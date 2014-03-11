@@ -1,6 +1,7 @@
 require(["../sdk/Arstider"], function(){
 	
 	require([
+		"Arstider/Browser",
 		"Arstider/Buffer",
 		"Arstider/Engine",
 		"Arstider/FileSystem",
@@ -8,12 +9,17 @@ require(["../sdk/Arstider"], function(){
 		"Arstider/Viewport",
 		
 		"Arstider/core/Storage"
-	],function(Buffer, Engine, FileSystem, Sound, Viewport, Storage){
+	],function(Browser, Buffer, Engine, FileSystem, Sound, Viewport, Storage){
 		
 		//Optional configs
 		FileSystem.basePath = "media/images/";	//Image url prefix
 		Buffer.setRenderMode("AUTO");	//Sharp pixels or auto interpolation for canvas rendering
 		Viewport.setGlobalScale(1);	//Scales the entire game
+		
+		if(!Browser.isMobile){
+			Viewport.maxWidth = 1440;
+			Viewport.maxHeight = 900;
+		}
 		
 		//List of sounds
 		Sound.setSounds("media/music/sprite", {

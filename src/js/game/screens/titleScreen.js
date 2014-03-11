@@ -5,23 +5,54 @@
  	
  	var timesSeen = 0;
 
-	define("screens/titleScreen", ["Arstider/Screen", "Arstider/DisplayObject"], function(Screen, DisplayObject){
+	define("screens/titleScreen", [
+		"Arstider/Screen", 
+		"Arstider/DisplayObject", 
+		"Arstider/Tween", 
+		"Arstider/Easings",
+		"Arstider/Buffer",
+		"Arstider/Viewport"
+	], function(Screen, DisplayObject, Tween, Easings, Buffer, Viewport){
 		
 		/**
 		 * Temp + private section
 		 */
 		
-		var title = new DisplayObject({
-			name:"title",
+		var troll = new DisplayObject({
+			name:"troll",
 			x:100,
 			y:200,
 			data:"monster2.gif",
-			onclick:function(){
-				console.log("My name is ", this.name);
+			shadowColor:"red",
+			shadowBlur:10,
+			shadowOffsetX:8,
+			shadowOffsetY:8,
+			onpress:function(){
+				this.data = Buffer.get("troll_grayscale");
+			},
+			onrelease:function(){
+				this.data = Buffer.get("troll");
+			},
+			onleave:function(){
+				this.data = Buffer.get("troll");
 			}
 		});
 		
-		
+		var fsButton = new DisplayObject({
+			name:"fs",
+			width:100,
+			height:100,
+			data:"button.png",
+			rpX:0.5,
+			rpY:0.5,
+			onpress:function(){
+				this.width = 105;
+				Viewport.enterFullScreen();
+			},
+			onrelease:function(){
+				this.width = 100;
+			}
+		});
 		
 		/**
 		 * Screen object
@@ -32,18 +63,25 @@
 			/**
 			 * Add elements to screen object
 			 */
-			this.addChild(title);
+			this.addChild(troll);
+			this.addChild(fsButton);
+			
+			fsButton.dock(0.9,0.1);
 		}
 		
 		/**
 		 * Screen methods
 		 */
 		TestScreen.prototype.onload = function(){
-			console.log("Screen launching for the "+(timesSeen++)+" time!");
+			Arstider.grayscale(Arstider.saveToCanvas("troll", troll.data));
+			
+			var titleTweenX = new Tween(troll, {shadowOffsetX:-8}, 1000, Easings.QUAD_IN_OUT).yoyo().play();
+			var titleTweenY = new Tween(troll, {shadowOffsetY:-8}, 900, Easings.QUAD_IN_OUT).yoyo().play();
 		};
 		
-		TestScreen.prototype.resetTimesSeen = function(){
-			timesSeen = 0;
+		TestScreen.prototype.update = function(){
+			troll.x += ((Math.random() - 0.5)*2);
+			troll.y += ((Math.random() - 0.5)*2);
 		};
 		
 		return TestScreen;
