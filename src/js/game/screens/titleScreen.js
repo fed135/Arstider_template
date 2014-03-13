@@ -9,10 +9,12 @@
 		"Arstider/Screen", 
 		"Arstider/DisplayObject", 
 		"Arstider/Tween", 
+		"Arstider/TextField",
+		"Arstider/Fonts",
 		"Arstider/Easings",
 		"Arstider/Buffer",
 		"Arstider/Viewport"
-	], function(Screen, DisplayObject, Tween, Easings, Buffer, Viewport){
+	], function(Screen, DisplayObject, Tween, TextField, Fonts, Easings, Buffer, Viewport){
 		
 		/**
 		 * Temp + private section
@@ -37,6 +39,17 @@
 				this.data = Buffer.get("troll");
 			}
 		});
+		
+		var promo = new TextField({
+			name:"promo",
+			x:300,
+			padding:3,
+			y:450,
+			strokeText:true
+		});
+		
+		promo.setText("[[b]]Arstider[[/]] intensifies!", false);
+		promo.setFont(Fonts.get("promoFont"));
 		
 		var fsButton = new DisplayObject({
 			name:"fs",
@@ -65,6 +78,9 @@
 			 */
 			this.addChild(troll);
 			this.addChild(fsButton);
+			this.addChild(promo);
+			
+			promo.render();
 			
 			fsButton.dock(0.9,0.1);
 		}

@@ -7,9 +7,10 @@ require(["../sdk/Arstider"], function(){
 		"Arstider/FileSystem",
 		"Arstider/Sound",
 		"Arstider/Viewport",
-		
+		"Arstider/Fonts",
+		"Arstider/Gradient",
 		"Arstider/core/Storage"
-	],function(Browser, Buffer, Engine, FileSystem, Sound, Viewport, Storage){
+	],function(Browser, Buffer, Engine, FileSystem, Sound, Viewport, Fonts, Gradient, Storage){
 		
 		//Optional configs
 		FileSystem.basePath = "media/images/";	//Image url prefix
@@ -17,9 +18,11 @@ require(["../sdk/Arstider"], function(){
 		Viewport.setGlobalScale(1);	//Scales the entire game
 		
 		if(!Browser.isMobile){
-			Viewport.maxWidth = 1440;
-			Viewport.maxHeight = 900;
+			Viewport.maxWidth = 1280;
+			Viewport.maxHeight = 800;
 		}
+		
+		Fonts.load("media/fonts/PromoFont.json");
 		
 		//List of sounds
 		Sound.setSounds("media/music/sprite", {
