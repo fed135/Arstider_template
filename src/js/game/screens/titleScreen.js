@@ -48,8 +48,16 @@
 			strokeText:true
 		});
 		
-		promo.setText("[[b]]Arstider[[/]] intensifies!", false);
-		promo.setFont(Fonts.get("promoFont"));
+		var promo2 = new TextField({
+			name:"promo2",
+			x:300,
+			padding:3,
+			y:500,
+			strokeText:true
+		});
+		
+		promo.setText("[[B]]Arstider[[/]] intens[[C=#ff0000]]ifies![[/]]", true);
+		promo.setFont(Fonts.get("TestFont"));
 		
 		var fsButton = new DisplayObject({
 			name:"fs",
@@ -65,7 +73,11 @@
 			onrelease:function(){
 				this.width = 100;
 			}
+			onhover:function()
 		});
+		
+		promo2.setText("Arstider intensifies!");
+		promo2.setFont(Fonts.get("TestFont"));
 		
 		/**
 		 * Screen object
@@ -79,8 +91,7 @@
 			this.addChild(troll);
 			this.addChild(fsButton);
 			this.addChild(promo);
-			
-			promo.render();
+			this.addChild(promo2);
 			
 			fsButton.dock(0.9,0.1);
 		}

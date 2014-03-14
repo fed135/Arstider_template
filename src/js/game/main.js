@@ -18,17 +18,18 @@ require(["../sdk/Arstider"], function(){
 		Viewport.setGlobalScale(1);	//Scales the entire game
 		
 		if(!Browser.isMobile){
-			Viewport.maxWidth = 1280;
-			Viewport.maxHeight = 800;
+			Viewport.maxWidth = 1136;
+			Viewport.maxHeight = 672;
 		}
 		
 		Fonts.load("media/fonts/PromoFont.json");
+		Fonts.create({
+			name:"TestFont",
+			size:"24px"
+		});
 		
 		//List of sounds
-		Sound.setSounds("media/music/sprite", {
-			menu:				{loop:true, offset:0, duration:46488},
-			gameplay:			{loop:true, offset:46488, duration:25728}
-		});
+		Sound.setSounds("media/music/sprite", "media/music/spriteInfo.json");
 		
 		//Starts the engine at the specified div id
 		Engine.start("main");
