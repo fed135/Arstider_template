@@ -72,8 +72,13 @@
 			},
 			onrelease:function(){
 				this.width = 100;
+			},
+			onhover:function(){
+				Viewport.tag.style.cursor = "pointer";
+			},
+			onleave:function(){
+				Viewport.tag.style.cursor = "default";
 			}
-			onhover:function()
 		});
 		
 		promo2.setText("Arstider intensifies!");
