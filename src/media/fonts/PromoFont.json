@@ -4,6 +4,8 @@
 	"size":"24px",
 	"strokeStyle":"#222",
 	"fillStyle":"#fff",
+	"shadowColor":"rgba(0,0,0,0.6)",
+	"shadowBlur":5,
 	"lineWidth":2,
 	"fontOffsetX":3,
 	"fontOffsetY":-9,
