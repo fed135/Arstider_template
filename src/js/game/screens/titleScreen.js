@@ -56,8 +56,24 @@
 			strokeText:true
 		});
 		
+		var promoPar = new TextField({
+			name:"para",
+			x:600,
+			y:450,
+			width:350,
+			height:350,
+			strokeText:true,
+			textWrap:true
+		});
+		
 		promo.setText("[[B]]Arstider[[/]] intens[[C=#ff0000]]ifies![[/]]", true);
-		promo.setFont(Fonts.get("TestFont"));
+		promo.setFont(Fonts.get("promoFont"));
+		
+		promo2.setText("Arstider intensifies!");
+		promo2.setFont(Fonts.get("promoFont"));
+		
+		promoPar.setText("Arstider intensifies a whole lot, I don't think just anyone can handle it's [[C=#ff0000]]powers[[/]]! Who you gonna call?", true);
+		promoPar.setFont(Fonts.get("promoFont"));
 		
 		var fsButton = new DisplayObject({
 			name:"fs",
@@ -81,9 +97,6 @@
 			}
 		});
 		
-		promo2.setText("Arstider intensifies!");
-		promo2.setFont(Fonts.get("TestFont"));
-		
 		/**
 		 * Screen object
 		 */
@@ -97,6 +110,7 @@
 			this.addChild(fsButton);
 			this.addChild(promo);
 			this.addChild(promo2);
+			this.addChild(promoPar);
 			
 			fsButton.dock(0.9,0.1);
 		}

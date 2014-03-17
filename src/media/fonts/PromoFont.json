@@ -4,5 +4,9 @@
 	"size":"24px",
 	"strokeStyle":"#222",
 	"fillStyle":"#fff",
-	"lineWidth":2
+	"lineWidth":2,
+	"fontOffsetX":3,
+	"fontOffsetY":-9,
+	"lineHeight":25,
+	"textAlign":"left"
 }
