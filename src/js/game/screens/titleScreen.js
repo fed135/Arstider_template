@@ -98,7 +98,7 @@
 			alphaDecay:0.02,
 			maxLifeTime:50,
 			startingIndex:9999,
-			maxParticles:10
+			spawnRate:20
 		});
 		
 		canon.addParticleType("smallSmoke", Smoke, {
@@ -112,8 +112,8 @@
 			rotationVariant:1.5,
 			rotationDecay:-1,
 			alphaDecay:0.02,
-			maxLifeTime:100,
-			spawnRate:400
+			maxLifeTime:1000,
+			spawnRate:20
 		});
 		
 		var fsButton = new DisplayObject({
@@ -167,6 +167,8 @@
 			
 			var titleTweenX = new Tween(troll, {shadowOffsetX:-8}, 1000, Easings.QUAD_IN_OUT).yoyo().play();
 			var titleTweenY = new Tween(troll, {shadowOffsetY:-8}, 900, Easings.QUAD_IN_OUT).yoyo().play();
+			
+			var canonTween = new Tween(canon, {x:100}, 2000, Easings.BACKSWING, 1.5).yoyo().play();
 		};
 		
 		TestScreen.prototype.update = function(){
