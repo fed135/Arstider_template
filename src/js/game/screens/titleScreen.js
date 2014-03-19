@@ -13,8 +13,12 @@
 		"Arstider/Fonts",
 		"Arstider/Easings",
 		"Arstider/Buffer",
-		"Arstider/Viewport"
-	], function(Screen, DisplayObject, Tween, TextField, Fonts, Easings, Buffer, Viewport){
+		"Arstider/Viewport",
+		"Arstider/Emitter",
+		
+		"entities/Spark",
+		"entities/Smoke"
+	], function(Screen, DisplayObject, Tween, TextField, Fonts, Easings, Buffer, Viewport, Emitter, Spark, Smoke){
 		
 		/**
 		 * Temp + private section
@@ -66,6 +70,12 @@
 			textWrap:true
 		});
 		
+		var canon = new Emitter({
+			x:568,
+			y:336,
+			spawnRate:100
+		});
+		
 		promo.setText("[[B]]Arstider[[/]] intens[[C=#ff0000]]ifies![[/]]", true);
 		promo.setFont(Fonts.get("promoFont"));
 		
@@ -74,6 +84,37 @@
 		
 		promoPar.setText("Arstider intensifies a whole lot, I don't think just anyone can handle it's [[C=#ff0000]]powers[[/]]! Who you gonna call?", true);
 		promoPar.setFont(Fonts.get("promoFont"));
+		
+		canon.addParticleType("smallSparks", Spark, {
+			xVelocity:2,
+			xVelocityVariant:2,
+			yVelocity:1,
+			yVelocityVariant:3,
+			xVelocityDecay:0.1,
+			yVelocityDecay:-0.1,
+			rotation:2,
+			rotationVariant:2,
+			rotationDecay:-1,
+			alphaDecay:0.02,
+			maxLifeTime:50,
+			startingIndex:9999,
+			maxParticles:10
+		});
+		
+		canon.addParticleType("smallSmoke", Smoke, {
+			xVelocity:0.3,
+			xVelocityVariant:0.5,
+			yVelocity:-0.1,
+			yVelocityVariant:0.2,
+			xVelocityDecay:0.1,
+			yVelocityDecay:0.01,
+			rotation:1,
+			rotationVariant:1.5,
+			rotationDecay:-1,
+			alphaDecay:0.02,
+			maxLifeTime:100,
+			spawnRate:400
+		});
 		
 		var fsButton = new DisplayObject({
 			name:"fs",
@@ -111,8 +152,11 @@
 			this.addChild(promo);
 			this.addChild(promo2);
 			this.addChild(promoPar);
+			this.addChild(canon);
 			
 			fsButton.dock(0.9,0.1);
+			
+			canon.start();
 		}
 		
 		/**
