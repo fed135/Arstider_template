@@ -1,0 +1,32 @@
+{
+	"name":"test level",
+	"width":5,
+	"height":5,
+	"fov":1,
+	"tileSizeX":36,
+	"tileSizeY":42,
+	"layers":{
+		"lower":{
+			"tiles":[
+				{"x":0, "y":0, "tileId":0, "spawns":[{"module":"entities/Smoke", "props":{"width":200}}], "collidable":1},
+				{"x":1, "y":0, "tileId":1}
+			],
+			"index":0,
+			"asset":"mapLayer1.png"
+		},
+		"mid":{
+			"tiles":[
+				{"x":1, "y":1, "tileId":2}
+			],
+			"index":1,
+			"asset":"mapLayer2.png"
+		},
+		"upper":{
+			"tiles":[
+				{"x":2, "y":2, "tileId":4}
+			],
+			"index":2,
+			"asset":"mapLayer3.png"
+		}
+	}
+}
