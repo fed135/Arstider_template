@@ -23,9 +23,7 @@ require(["../sdk/Arstider"], function(){
 			Viewport.maxHeight = 672;
 		}
 		
-		Fonts.load("media/fonts/PromoFont.json", function(){
-			
-		});
+		Fonts.load("media/fonts/PromoFont.json");
 		Fonts.create({
 			name:"TestFont",
 			size:"24px"
