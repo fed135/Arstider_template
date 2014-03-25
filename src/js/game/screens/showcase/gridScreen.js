@@ -1,9 +1,9 @@
-define("screens/gridTest", [
+define("screens/showcase/gridScreen", [
 		"Arstider/Screen", 
 		"Arstider/DisplayObject", 
 		"Arstider/GridMap",
 		
-		"textLib!../media/maps/map01.json"
+		"textLib!../../media/maps/map01.json"
 	], function(Screen, DisplayObject, GridMap, map){
 		
 		var level = new GridMap(JSON.parse(map));

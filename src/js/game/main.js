@@ -60,6 +60,6 @@ require(["../sdk/Arstider"], function(){
 		};
 		
 		//Loads first menu (located in game/screens)
-		Engine.loadScreen("titleScreen");
+		Engine.loadScreen("indexScreen");
 	});
 });
