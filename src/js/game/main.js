@@ -4,16 +4,17 @@ require(["../sdk/Arstider"], function(){
 		"Arstider/Browser",
 		"Arstider/Buffer",
 		"Arstider/Engine",
-		"Arstider/FileSystem",
 		"Arstider/Sound",
 		"Arstider/Viewport",
 		"Arstider/Fonts",
 		"Arstider/Gradient",
-		"Arstider/core/Storage"
-	],function(Browser, Buffer, Engine, FileSystem, Sound, Viewport, Fonts, Gradient, Storage){
+		"Arstider/core/Storage",
+		"Arstider/Preloader",
+		"Arstider/DisplayObject",
+		"Arstider/TextField"
+	],function(Browser, Buffer, Engine, Sound, Viewport, Fonts, Gradient, Storage, Preloader, DisplayObject, TextField){
 		
 		//Optional configs
-		FileSystem.basePath = "media/images/";	//Image url prefix
 		Buffer.setRenderMode("AUTO");	//Sharp pixels or auto interpolation for canvas rendering
 		Viewport.setGlobalScale(1);	//Scales the entire game
 		
@@ -22,7 +23,9 @@ require(["../sdk/Arstider"], function(){
 			Viewport.maxHeight = 672;
 		}
 		
-		Fonts.load("media/fonts/PromoFont.json");
+		Fonts.load("media/fonts/PromoFont.json", function(){
+			
+		});
 		Fonts.create({
 			name:"TestFont",
 			size:"24px"
@@ -33,6 +36,28 @@ require(["../sdk/Arstider"], function(){
 		
 		//Starts the engine at the specified div id
 		Engine.start("main");
+		
+		//Setup preloader
+		var bg = new DisplayObject({
+			name:"loaderBg",
+			data:"media/images/cover.png"
+		});
+		Preloader.addChild(bg);
+		bg.fill(1,1);
+		
+		var loaded = new TextField({
+			name:"loaded",
+			padding:3,
+			strokeText:true
+		});
+		Preloader.addChild(loaded);
+		loaded.dock(0.5,0.5);
+		
+		loaded.setFont(Fonts.get("promoFont")); //external fonts not loaded... :(
+		
+		Preloader.update = function(pcent){
+			loaded.setText("Loading... [[C=#33ff33]]"+pcent+"[[/]]%", true);
+		};
 		
 		//Loads first menu (located in game/screens)
 		Engine.loadScreen("titleScreen");

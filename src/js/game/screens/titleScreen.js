@@ -28,7 +28,7 @@
 			name:"troll",
 			x:100,
 			y:200,
-			data:"monster2.gif",
+			data:"media/images/monster2.gif",
 			shadowColor:"red",
 			shadowBlur:10,
 			shadowOffsetX:8,
@@ -120,7 +120,7 @@
 			name:"fs",
 			width:100,
 			height:100,
-			data:"button.png",
+			data:"media/images/button.png",
 			rpX:0.5,
 			rpY:0.5,
 			onpress:function(){
