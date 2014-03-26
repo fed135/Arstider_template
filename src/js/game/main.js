@@ -11,12 +11,15 @@ require(["../sdk/Arstider"], function(){
 		"Arstider/core/Storage",
 		"Arstider/Preloader",
 		"Arstider/DisplayObject",
-		"Arstider/TextField"
-	],function(Browser, Buffer, Engine, Sound, Viewport, Fonts, Gradient, Storage, Preloader, DisplayObject, TextField){
+		"Arstider/TextField",
+		"Arstider/Dictionary"
+	],function(Browser, Buffer, Engine, Sound, Viewport, Fonts, Gradient, Storage, Preloader, DisplayObject, TextField, Dictionary){
 		
 		//Optional configs
 		Buffer.setRenderMode("AUTO");	//Sharp pixels or auto interpolation for canvas rendering
 		Viewport.setGlobalScale(1);	//Scales the entire game
+		
+		Dictionary.load("media/strings.json");
 		
 		if(!Browser.isMobile){
 			Viewport.maxWidth = 1136;

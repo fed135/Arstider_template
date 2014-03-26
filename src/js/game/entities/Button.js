@@ -19,7 +19,7 @@ function(Texture, DisplayObject, Viewport, Tween, Easings, TextField, Fonts){
 		});
 		
 		this.label.setFont(Fonts.get("promoFont"));
-		this.label.setText(props.label);
+		this.label.setText(props.label, true);
 		this.addChild(this.label);
 		
 		this.callback = props.callback;

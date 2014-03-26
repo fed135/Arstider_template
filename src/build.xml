@@ -3,8 +3,8 @@
 	<property name="game" value="ArstiderTemplate"/>
 	
 	<property name="tools" location="tools"/>
-	<!--property name="dest" location="C:\wamp\www\${game}"/-->
-	<property name="dest" location="/var/www/${game}"/>
+	<property name="dest" location="C:\wamp\www\${game}"/>
+	<!--property name="dest" location="/var/www/${game}"/-->
 	
 	<target name="clean">
 		<echo> - preparing</echo>

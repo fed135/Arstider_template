@@ -3,9 +3,10 @@ define("screens/indexScreen", [
 		"Arstider/DisplayObject",
 		"Arstider/Events",
 		"Arstider/Background",
+		"Arstider/Dictionary",
 		
 		"entities/Button"
-	], function(Screen, DisplayObject, Events, Background, Button){
+	], function(Screen, DisplayObject, Events, Background, Dictionary, Button){
 		
 		var modules = ["sprite", "grid", "particle", "sound", "text", "tweens", "filters"];
 		
@@ -19,7 +20,7 @@ define("screens/indexScreen", [
 				button = new Button({
 					x:100,
 					y:100 + (i*37),
-					label:modules[i],
+					label:Dictionary.translate(modules[i]),
 					name:modules[i]+"Screen",
 					callback:function(){Events.broadcast("gotoScreen", "showcase/"+this.name);}
 				});
