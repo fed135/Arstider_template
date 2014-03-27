@@ -43,8 +43,8 @@ require(["../sdk/Arstider"], function(){
 						fillSave = Engine.context.fillStyle;
 						Engine.stop();
 						Viewport.onresize = function(){
-							this.tag.style.width = window.innerHeight + "px";
-							this.tag.style.height = window.innerWidth + "px";
+							this.tag.style.width = window.innerWidth + "px";
+							this.tag.style.height = window.innerHeight + "px";
 							this.tag.width = window.innerWidth;
 							this.tag.height = window.innerHeight;
 							
