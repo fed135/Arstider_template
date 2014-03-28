@@ -15,7 +15,8 @@ function(Texture, DisplayObject, Viewport, Tween, Easings, TextField, Fonts){
 			width:120,
 			textAlign:"center",
 			height:26,
-			y:5
+			y:5,
+			name:props.name
 		});
 		
 		this.label.setFont(Fonts.get("promoFont"));

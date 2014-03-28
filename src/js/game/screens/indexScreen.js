@@ -15,17 +15,21 @@ define("screens/indexScreen", [
 		function Index(name){
 			Arstider.Super(this, Screen, name);
 			
-			var button;
-			for(var i =0; i<modules.length; i++){
-				button = new Button({
-					x:100,
-					y:100 + (i*37),
-					label:Dictionary.translate(modules[i]),
-					name:modules[i]+"Screen",
-					callback:function(){Events.broadcast("gotoScreen", "showcase/"+this.name);}
-				});
-				this.addChild(button);
-			}
+			var thisRef = this;
+			
+			Dictionary.translate("test", null, function(){
+				var button;
+				for(var i =0; i<modules.length; i++){
+					button = new Button({
+						x:100,
+						y:100 + (i*37),
+						label:Dictionary.translate(modules[i]),
+						name:modules[i]+"Screen",
+						callback:function(){Events.broadcast("gotoScreen", "showcase/"+this.name);}
+					});
+					thisRef.addChild(button);
+				}
+			});
 		}
 		
 		Arstider.Inherit(Index, Screen);
