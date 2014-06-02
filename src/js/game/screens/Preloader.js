@@ -1,41 +1,33 @@
-define("screens/Preloader", [
-    "Arstider/Screen",                         
-	"Arstider/DisplayObject",
-	"Arstider/TextField",
-	"Arstider/Fonts",
-	"Arstider/Viewport"
-	], function(Screen, DisplayObject, TextField, Fonts, Viewport){
+define("screens/Preloader",[                         
+	"Arstider/DisplayObject"
+], function(DisplayObject){
 	
-	var bg = new DisplayObject({
-		name:"loaderBg",
-		data:"media/images/cover.png"
-	});
-	
-	
-	var loaded = new TextField({
-		name:"loaded",
-		padding:3,
-		strokeText:true
-	});
-	
-	loaded.setFont(Fonts.get("promoFont"));
-	
-	function Preloader(){
-		Arstider.Super(this, Screen);
-		
-		this.addChild(bg);
-		bg.fill(1,1);
-		this.addChild(loaded);
-		loaded.dock(0.5,0.5);
-		
-		this.scaleX = this.scaleY = Viewport.globalScale;
-		
-	}
-	Arstider.Inherit(Preloader, Screen);
-	
-	Preloader.prototype.update = function(pcent){
-		loaded.setText("Loading... [[C=#33ff33]]"+pcent+"[[/]]%", true);
+	return {
+		init:function()
+		{
+			this.bg = new DisplayObject({
+				name: "bg",
+				data: "media/images/bg.jpg"
+			});
+			this.addChild(this.bg);
+
+			this.bar = new DisplayObject({
+				name: "bar",
+				data: "media/images/spark.png",
+				x: 412,
+				y: 347
+			});
+			this.addChild(this.bar);
+		},
+		update:function(pc)
+		{
+			var w = 330 * (pc * 0.01);
+			
+			if(w < 1) w = 1;
+
+			this.bar.width = w;
+
+			// this.drawImage(bar, 0, 0, Math.floor(w), 27, 412, 347, Math.floor(w), 27);
+		}
 	};
-	
-	return Preloader;
-})
+});

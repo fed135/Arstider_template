@@ -1,7 +1,7 @@
 {
 	"name":"test level",
-	"width":5,
-	"height":5,
+	"width":120,
+	"height":120,
 	"fov":1,
 	"tileSizeX":36,
 	"tileSizeY":42,
@@ -9,21 +9,51 @@
 		"lower":{
 			"tiles":[
 				{"x":0, "y":0, "tileId":0, "spawns":[{"module":"entities/Smoke", "props":{"width":200}}], "collidable":1},
-				{"x":1, "y":0, "tileId":1}
+				{"x":1, "y":0, "tileId":1},
+				{"x":2, "y":0, "tileId":2},
+				{"x":3, "y":0, "tileId":3},
+				{"x":4, "y":0, "tileId":4},
+				{"x":5, "y":0, "tileId":5},
+				{"x":6, "y":0, "tileId":6},
+				{"x":7, "y":0, "tileId":7}
+				
 			],
 			"index":0,
 			"asset":"media/images/mapLayer1.png"
 		},
 		"mid":{
 			"tiles":[
-				{"x":1, "y":1, "tileId":2}
+				{"x":0, "y":1, "tileId":8},
+				{"x":1, "y":1, "tileId":9},
+				{"x":2, "y":1, "tileId":10},
+				{"x":3, "y":1, "tileId":11},
+				{"x":4, "y":1, "tileId":12},
+				{"x":5, "y":1, "tileId":13},
+				{"x":6, "y":1, "tileId":14},
+				{"x":7, "y":1, "tileId":15}
 			],
 			"index":1,
 			"asset":"media/images/mapLayer2.png"
 		},
 		"upper":{
 			"tiles":[
-				{"x":2, "y":2, "tileId":4}
+				{"x":0, "y":2, "tileId":16},
+				{"x":1, "y":2, "tileId":17},
+				{"x":2, "y":2, "tileId":18},
+				{"x":3, "y":2, "tileId":19},
+				{"x":4, "y":2, "tileId":20},
+				{"x":5, "y":2, "tileId":21},
+				{"x":6, "y":2, "tileId":22},
+				{"x":7, "y":2, "tileId":23},
+				
+				{"x":0, "y":3, "tileId":24},
+				{"x":1, "y":3, "tileId":25},
+				{"x":2, "y":3, "tileId":26},
+				{"x":3, "y":3, "tileId":27},
+				{"x":4, "y":3, "tileId":28},
+				{"x":5, "y":3, "tileId":29},
+				{"x":6, "y":3, "tileId":30},
+				{"x":7, "y":3, "tileId":31}
 			],
 			"index":2,
 			"asset":"media/images/mapLayer3.png"

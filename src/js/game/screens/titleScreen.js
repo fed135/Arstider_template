@@ -24,6 +24,8 @@
 		 * Temp + private section
 		 */
 		
+		var tintedTroll;
+		
 		var troll = new DisplayObject({
 			name:"troll",
 			x:100,
@@ -34,7 +36,7 @@
 			shadowOffsetX:8,
 			shadowOffsetY:8,
 			onpress:function(){
-				this.data = Buffer.get("troll_grayscale");
+				this.data = tintedTroll;
 			},
 			onrelease:function(){
 				this.data = Buffer.get("troll");
@@ -163,7 +165,7 @@
 		 * Screen methods
 		 */
 		TestScreen.prototype.onload = function(){
-			Arstider.grayscale(Arstider.saveToCanvas("troll", troll.data));
+			tintedTroll = Arstider.tint(Arstider.saveToCanvas("troll", troll.data), 255,0,0,0.5);
 			
 			var titleTweenX = new Tween(troll, {shadowOffsetX:-8}, 1000, Easings.QUAD_IN_OUT).yoyo().play();
 			var titleTweenY = new Tween(troll, {shadowOffsetY:-8}, 900, Easings.QUAD_IN_OUT).yoyo().play();

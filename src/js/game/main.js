@@ -1,91 +1,44 @@
-require(["../sdk/Arstider"], function(){
-	
-	require([
-		"Arstider/Browser",
-		"Arstider/Engine",
-		"Arstider/Sound",
-		"Arstider/Viewport",
-		"Arstider/Fonts",
-		"Arstider/GameData",
-		"Arstider/Preloader",
-		"Arstider/Dictionary",
-		
-		"screens/Preloader"
-	],function(Browser, Engine, Sound, Viewport, Fonts, GameData, Preloader, Dictionary, preloaderContent){
-		
-		GameData.load("media/config.json");
-		GameData.setStorageKey("localStoragePrefix");
-	
-		Dictionary.load("media/strings.json");
-		
-		if(!Browser.isMobile){
-			Viewport.maxWidth = 1136;
-			Viewport.maxHeight = 672;
-		}
-		
-		Fonts.load("media/fonts/fonts.json");
-		Fonts.create({
-			name:"TestFont",
-			size:"24px"
+//function gameStart(){
+	require(["js/libs/Arstider.min"], function(){
+		require([
+			"Arstider/Browser",
+			"Arstider/Engine",
+			"Arstider/Sound",
+			"Arstider/Viewport",
+			"Arstider/Fonts",
+			"Arstider/core/Storage",
+			"Arstider/Preloader",
+			"Arstider/Dictionary",
+			"screens/Preloader",
+			"Arstider/GameData",
+			"Arstider/Request",
+			"Arstider/Keyboard",
+			"Arstider/Events",
+			"Arstider/Telemetry"
+		],
+		function(Browser, Engine, Sound, Viewport, Fonts, Storage, Preloader, Dictionary, preloaderContent, GameData, Request, Keyboard, Events, Telemetry){
+			var loadReq = 4, loaded = 0;
+			
+			Dictionary.load("media/strings.json", initPreloadStep);
+			Fonts.load("media/fonts/fonts.json", initPreloadStep);
+			GameData.load("media/config.json", initPreloadStep);
+			Sound.load("media/music/sprite", "media/music/spriteInfo.json", initPreloadStep);
+			
+			
+			Engine.start("main", true);
+			Engine.debug = @app.debug@;
+			Arstider.verbose = 2;
+                        Engine.setShaders("media/shaders/vertex.shader", "media/shaders/fragment.shader");
+                        
+			Engine.setPreloaderScreen(preloaderContent);
+			
+			function initPreloadStep(){
+				console.log(loaded,"/",loadReq);
+				loaded++;
+				if(loaded == loadReq){
+					Engine.loadScreen("screens/showcase/gridScreen");
+				}
+			}
 		});
-		
-		//#################################################
-		//Publisher-specifics examples
-		//#################################################
-			var badOrientationImg = new Image();
-			badOrientationImg.src = "media/images/badOrientation.jpg";	//Don't bother tracking...or do. You decide
-			
-			var fillSave;
-			
-			Viewport.onrotate = function(){
-				if(Viewport.orientation == "portrait"){
-					if(!Engine.pausedByRequest){
-						fillSave = Engine.context.fillStyle;
-						Engine.stop();
-						Viewport.onresize = function(){
-							this.tag.style.width = window.innerWidth + "px";
-							this.tag.style.height = window.innerHeight + "px";
-							this.tag.width = window.innerWidth;
-							this.tag.height = window.innerHeight;
-							
-							this.tag.style.left = "0px";
-							this.tag.style.top = "0px";
-							this.tag.style.position = "fixed";
-						};
-						Viewport._resize();
-					}
-					Engine.pausedByRequest = true; //Prevents preloader from showing up
-					
-					Engine.context.fillStyle = "#000000";
-					Engine.context.fillRect(0,0,window.innerWidth, window.innerHeight);
-					Engine.context.drawImage(badOrientationImg, (window.innerWidth - badOrientationImg.width)*0.5, (window.innerHeight - badOrientationImg.height)*0.5);
-				}
-				else if(Viewport.orientation == "landscape"){
-					if(Engine.pausedByRequest){
-						Engine.pausedByRequest = false; //Prevents preloader from showing up
-						Engine.play();
-						Viewport.onresize = Arstider.emptyFunction;
-						Viewport._resize();
-						Engine.context.fillStyle = fillSave;
-					}	
-				}
-			};
-			
-			//Do similar check for "cookies disabled", "unsupported platform", etc...
-			
-		//#################################################
-		
-		
-		
-		//List of sounds
-		Sound.setSounds("media/music/sprite", "media/music/spriteInfo.json");
-		
-		//Starts the engine at the specified div id
-		Engine.start("main");
-		
-		Preloader.setScreen(preloaderContent);
-		
-		//Loads first menu (located in game/screens)
-		Engine.loadScreen("indexScreen");
 	});
-});
+//}
