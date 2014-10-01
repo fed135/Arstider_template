@@ -39,6 +39,6 @@ define([], {
 		CRAZY_MESSAGE: "Can your [[B]][[C=red]]DAD'S[[/]]<br> [SOMETHING][[/]] do [[i]]this[[/]]?[[C=blue]]?[[/]]?"
 		
 		//(in game) :
-		Dictionary.translate("PERCENTAGE", {"[SOMETHING]":"computer"});
+		Dictionary.translate("CRAZY_MESSAGE", {"[SOMETHING]":"computer"});
 	*/
 });
